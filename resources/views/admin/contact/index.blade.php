@@ -19,11 +19,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Tên Khách Hàng</th>
-                    <th>Email</th>
-                    <th>Số Điện Thoại</th>
-                    <th>Địa Chỉ</th>
                     <th>Chủ Đề</th>
-                    <th>Nội Dung</th>
                     <th>Ngày Tạo</th>
                     <th>Trạng Thái</th>
                     <th>Tùy Chọn</th>
@@ -34,11 +30,7 @@
                     <tr>
                         <td scope="row">{{ $contact->id }}</td>
                         <td>{{ $contact->name}}</td>
-                        <td>{{ $contact->email }}</td>
-                        <td>{{ $contact->phone }}</td>
-                        <td>{{ $contact->address }}</td>
                         <td>{{ $contact->title }}</td>
-                        <td>{!! Str::words($contact->description, 15)  !!}</td>
                         <td>{{ $contact->created_at }}</td>
                         <td>{{ $contact->status == 0 ? 'Chưa xử lý' : 'Đã xử lý' }}</td>
                         <td> <a class="text-white btn btn-success" href="{{ route('contact.show', $contact->id) }}">Xem</a>

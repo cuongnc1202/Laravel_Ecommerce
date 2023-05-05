@@ -11,10 +11,10 @@
         .login-form {
             width: 500px;
             margin: auto;
-            margin-top: 100px;
+            margin-top: 50px;
         }
         body {
-            background-image: url(https://kiemtientuweb.com/ckfinder/userfiles/images/background-dep/background-dep-23.jpg)
+            background: url(https://phunugioi.com/wp-content/uploads/2020/02/mau-background-dep.jpg);
 
         }
     </style>
@@ -28,6 +28,7 @@
     <div class="login-form bg-light">
         <form action="#" method="post" class="py-5 px-5">
             @csrf
+            <h3 class="text-center text-info">ĐĂNG NHẬP ADMIN</h3>
             <div class="form-group my-4">
                 <label for="">Tài khoản:</label>
                 <input type="email" name="email" class="form-control form-control-lg" placeholder="Nhập tên tài khoản ...">

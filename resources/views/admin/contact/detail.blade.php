@@ -31,11 +31,9 @@
                         <th>ID</th>
                         <th>Tên Khách Hàng</th>
                         <th>Email</th>
-                        <th>Số Điện Thoại</th>
+                        <th>Điện Thoại</th>
                         <th>Địa Chỉ</th>
-                        <th>Chủ Đề</th>
                         <th>Nội Dung</th>
-                        <th>Ngày Tạo</th>
                         <th>Trạng Thái</th>
                     </tr>
                 </thead>
@@ -46,10 +44,8 @@
                         <td>{{ $contact->email }}</td>
                         <td>{{ $contact->phone }}</td>
                         <td>{{ $contact->address }}</td>
-                        <td>{{ $contact->title }}</td>
                         <td>{{ $contact->description }}</td>
-                        <td>{{ $contact->created_at }}</td>
-                        <td>{{ $contact->status == 1 ? 'Chưa xử lý' : 'Đã xử lý' }}</td>
+                        <td>{{ $contact->status == 0 ? 'Chưa xử lý' : 'Đã xử lý' }}</td>
                     </tr>
                 </tbody>
             </table>

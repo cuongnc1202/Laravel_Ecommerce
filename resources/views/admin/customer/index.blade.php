@@ -21,7 +21,7 @@
                     <th>Email</th>
                     <th>Số Điện Thoại</th>
                     <th>Địa Chỉ</th>
-                    <th>Sửa</th>
+                    <!-- <th>Sửa</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -32,11 +32,11 @@
                         <td>{{ $cust->email }}</td>
                         <td>{{ $cust->phone }}</td>
                         <td>{{ $cust->address }}</td>
-                        <td>
+                        <!-- <td>
                             <a href="{{ route('customer.edit', $cust->id) }}" class="btn btn-warning"><i
                                     class="fa fa-edit"></i></a>
                             </form>
-                        </td>
+                        </td> -->
                     </tr>
                 @endforeach
             </tbody>

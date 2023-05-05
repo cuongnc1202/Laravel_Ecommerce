@@ -35,7 +35,7 @@
         </aside>
 
         <div class="content-wrapper px-5">  
-            <h1 class="text-center  py-3"><b>@yield('title')</b></h1>
+            <h1 class="text-center text-success py-3" style="text-transform: uppercase"><b>@yield('title')</b></h1>
             <section class="content">
                 <div class="card py-5">
                     @yield('content')
