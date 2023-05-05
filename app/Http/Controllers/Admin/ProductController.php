@@ -51,13 +51,21 @@ class ProductController extends Controller
             'name' => 'required|unique:products',
             'image' => 'required|mimes:jpg,jpeg,png,gif',
             'thumbnail[]' => 'mimes:jpg,jpeg,png,gif',
+            'price' => 'required|numeric|gt:0',
+            'sale_price' => 'numeric|lt:price'
         ],[
             'name.required' => 'Tên sản phẩm không được để trống !',
             'name.unique' => 'Tên sản phẩm đã tồn tại, thử tên khác !',
             'image.required' => 'Ảnh sản phẩm không được để trống !',
             'image.mimes' => 'Định dạng ảnh phải là jpg, jpeg, png hoặc gif !',
             'thumbnail[].mimes' => 'Định dạng ảnh phải là jpg, jpeg, png hoặc gif !',
+            'price.required' => 'Giá sản phẩm không được để trống !',
+            'price.numeric' => 'Giá sản phẩm phải là dạng số !',
+            'price.gt:0' => 'Giá sản phẩm không phải lớn hơn 0 !',
+            'sale_price.numeric' => 'Giá khuyến mại phải là dạng số !',
+            'sale_price.lt:price' => 'Giá sản phẩm phải nhỏ hơn giá gốc !'
         ]);
+        
         if(Product::addProduct()) {
             return redirect()->route('product.index')->with('true','Thêm thành công sản phẩm: '.$request->name);
         }
@@ -89,6 +97,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product, ProductMaterial $productMaterial)
     {
+        $request->validate([
+            'price' => 'required|numeric|gt:0',
+            'sale_price' => 'lt:price'
+        ],[
+            'price.required' => 'Giá sản phẩm không được để trống !',
+            'price.numeric' => 'Giá sản phẩm phải là dạng số !',
+            'price.gt:0' => 'Giá sản phẩm không phải lớn hơn 0 !',
+            'sale_price.lt:price' => 'Giá sản phẩm phải nhỏ hơn giá gốc !'
+        ]);
         $data = $request->only('name','price','sale_price','category_id','description','status');
         if ($request->has('image')) {
             $file_name = $request->image->getClientOriginalName();
