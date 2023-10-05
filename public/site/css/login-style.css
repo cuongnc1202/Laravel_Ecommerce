@@ -1,0 +1,36 @@
+body {
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: url(../images/bg.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.login--form {
+    width: 350px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0,0,0,.5);
+    padding: 20px;
+    margin: 40px 0;
+    overflow-x: hidden;
+}
+
+.login--form label {
+    color: #162938;
+    font-weight: 500;
+}
+
+.btn--login {
+    width: 100%;
+    background: #162938;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
