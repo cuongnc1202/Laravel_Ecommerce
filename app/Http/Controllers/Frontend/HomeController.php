@@ -11,10 +11,11 @@ use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\Color;
 use App\Models\Size;
-use App\Models\Contact;
+use App\Mail\ContactMail;
 use Illuminate\Http\Request;
 use Auth;
 use Hash;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -49,13 +50,11 @@ class HomeController extends Controller
     {
         return view('site.contact');
     }
+
     public function post_contact(Request $request)
     {
-        $data = $request->only('first_name', 'last_name', 'email', 'phone', 'address', 'title', 'description');
-        if (Contact::create($data)) {
-            return redirect()->back()->with('true', 'Contact has been sent');
-        }
-        return redirect()->back()->with('false', 'Contact sending failed');
+        Mail::to($request->email)->send(new ContactMail($request->first_name, $request->last_name, $request->email, $request->phone, $request->address, $request->subject, $request->mail_body));
+        return redirect()->route('site.contact')->with('true', 'Contact has been sent');
     }
 
     public function register()

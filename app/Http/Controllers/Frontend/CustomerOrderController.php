@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Cart;
+use App\Mail\ConfirmOrder;
+use Illuminate\Support\Facades\Mail;
 
 class CustomerOrderController extends Controller
 {
@@ -15,9 +17,15 @@ class CustomerOrderController extends Controller
         $customer = auth('customer')->user();
         return view('site.checkout', compact('customer'));
     }
+
+    public function sendOrderConfirmationMail($order)
+    {
+        Mail::to($order->email)->send(new ConfirmOrder($order));
+    }
+
     public function post_checkout(Request $request, Cart $cart)
     {
-        $data = $request->only('first_name','last_name','phone','address','email','note');
+        $data = $request->only('first_name', 'last_name', 'phone', 'address', 'email', 'note');
         $data['customer_id'] = auth('customer')->user()->id;
 
         if ($order = Order::create($data)) {
@@ -32,12 +40,15 @@ class CustomerOrderController extends Controller
                 ];
 
                 $orderId = OrderDetail::create($detail)->id;
+                $this->sendOrderConfirmationMail($order);
             }
             $cart->clear();
-            return redirect()->route('order.detail', $order->id)->with('true', 'Ordered successfully');
+            return redirect()->route('order.detail', $order->id)->with('true', 'Order created. Please check your email to confirm your order.');
         }
-        return redirect()->back()->with('false', 'Order failed');
+        return redirect()->back()->with('false', 'Order creating failed');
     }
+
+
     public function history()
     {
         $customer = auth('customer')->user();
@@ -46,6 +57,6 @@ class CustomerOrderController extends Controller
     }
     public function detail(Order $order)
     {
-       return view('site.customer.order-detail', compact('order'));
+        return view('site.customer.order-detail', compact('order'));
     }
 }

@@ -23,35 +23,35 @@
                 @csrf @method('POST')
                 <div class="row">
                     <div class="form-group col-md-6 mb-3">
-                        <label for="inputname"><b>First name</b></label>
-                        <input type="text" class="form-control mt-1" name="first_name" placeholder="">
+                        <label for=""><b>Name</b></label>
+                        <input type="text" class="form-control mt-1" name="first_name" value="{{ old('first_name') }}" placeholder="">
                     </div>
                     <div class="form-group col-md-6 mb-3">
-                        <label for="inputname"><b>Last name</b></label>
-                        <input type="text" class="form-control mt-1" name="last_name" placeholder="">
+                        <label for=""><b>Last name</b></label>
+                        <input type="text" class="form-control mt-1" name="last_name" value="{{ old('last_name') }}" placeholder="">
                     </div>
                     <div class="form-group col-md-6 mb-3">
-                        <label for="inputemail"><b>Email</b></label>
-                        <input type="email" class="form-control mt-1" name="email" placeholder="">
+                        <label for=""><b>Email</b></label>
+                        <input type="email" class="form-control mt-1" name="email" value="{{ old('email') }}" placeholder="">
                     </div>
                     <div class="form-group col-md-6 mb-3">
-                        <label for="inputname"><b>Phone</b></label>
-                        <input type="number" class="form-control mt-1" name="phone" placeholder="">
+                        <label for=""><b>Phone</b></label>
+                        <input type="number" class="form-control mt-1" name="phone" value="{{ old('phone') }}" placeholder="">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-12 mb-3">
-                        <label for="inputemail"><b>Address</b></label>
-                        <input type="text" class="form-control mt-1" name="address" placeholder="">
+                        <label for=""><b>Address</b></label>
+                        <input type="text" class="form-control mt-1" name="address" value="{{ old('address') }}" placeholder="">
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="inputtitle"><b>Topic</b></label>
-                    <input type="text" class="form-control mt-1" name="title" placeholder="">
+                    <label for=""><b>Subject</b></label>
+                    <input type="text" class="form-control mt-1" name="subject" value="{{ old('subject') }}" placeholder="">
                 </div>
                 <div class="mb-3">
-                    <label for="inputdescription"><b>Message</b></label>
-                    <textarea class="form-control mt-1" name="description" placeholder="" rows="8"></textarea>
+                    <label for=""><b>Message</b></label>
+                    <textarea class="form-control mt-1" name="mail_body" placeholder="" value="{{ old('mail_body') }}" rows="8"></textarea>
                 </div>
                 <div class="row">
                     <div class="col text-end mt-2">
@@ -62,36 +62,5 @@
         </div>
     </div>
     <!-- End Contact -->
-
-
-
-@stop()
-
-@section('js')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    @if (Session::get('true'))
-        <script>
-            Swal.fire({
-                position: 'mid-center',
-                icon: 'success',
-                title: '{{ Session::get('true') }}',
-                showConfirmButton: true,
-                timer: 3500
-            })
-        </script>
-    @endif
-
-    @if (Session::get('false'))
-        <script>
-            Swal.fire({
-                position: 'mid-center',
-                icon: 'success',
-                title: '{{ Session::get('false') }}',
-                showConfirmButton: true,
-                timer: 3500
-            })
-        </script>
-    @endif
 
 @stop()

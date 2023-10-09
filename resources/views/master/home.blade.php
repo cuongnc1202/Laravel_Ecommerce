@@ -281,28 +281,39 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
       <script src="{{ url('/site') }}/js/custom.js"></script>
       @yield('js')
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
       @if (Session::get('true'))
          <script>
-            Swal.fire({
-                  position: 'mid-center',
-                  icon: 'success',
-                  title: '{{ Session::get('true') }}',
-                  showConfirmButton: true,
-                  timer: 1500
+            // Swal.fire({
+            //       position: 'mid-center',
+            //       icon: 'success',
+            //       title: '{{ Session::get("true") }}',
+            //       showConfirmButton: true,
+            //       timer: 2000
+            // });
+            $.toast({
+               heading: 'Success!',
+               text: '{{ Session::get("true") }}',
+               position: 'top-center',
+               icon: 'success'
             })
          </script>
       @endif
 
       @if (Session::get('false'))
          <script>
-            Swal.fire({
-                  position: 'mid-center',
-                  icon: 'false',
-                  title: '{{ Session::get('false') }}',
-                  showConfirmButton: true,
-                  timer: 1500
+            // Swal.fire({
+            //       position: 'mid-center',
+            //       icon: 'error',
+            //       title: '{{ Session::get("false") }}',
+            //       showConfirmButton: true,
+            //       timer: 2000
+            // });
+            $.toast({
+               heading: 'Failed!',
+               text: '{{ Session::get("false") }}',
+               position: 'top-center',
+               icon: 'error'
             })
          </script>
       @endif

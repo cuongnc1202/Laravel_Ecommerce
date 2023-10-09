@@ -1,5 +1,21 @@
 jQuery(document).ready(function ($) {
 
+    function cartCallAjax(link, message) {
+        $.ajax({
+            url: link,
+            type: 'get',
+            success: function () {
+                $('#cart-number').load(location.href + ' #cart-number > *');
+                $('#cart').load(location.href + ' #cart > *');
+                $.toast({
+                    heading: 'Alert',
+                    text: message,
+                    position: 'top-center',
+                    icon: 'success',
+                });
+            }
+        });
+    }
     $('.cart-add').click(function (ev) {
         ev.preventDefault();
         var _url = $(this).attr('href');
@@ -35,23 +51,6 @@ jQuery(document).ready(function ($) {
         cartCallAjax(_url3, 'Success')
 
     });
-
-    function cartCallAjax(link, message) {
-        $.ajax({
-            url: link,
-            type: 'get',
-            success: function () {
-                $('#cart-number').load(location.href + ' #cart-number > *');
-                $('#cart').load(location.href + ' #cart > *');
-                $.toast({
-                    heading: 'Thông báo',
-                    text: message,
-                    position: 'top-center',
-                    icon: 'success',
-                });
-            }
-        });
-    }
 
     $('#thumbnailCarousel').owlCarousel({
         items: 3,

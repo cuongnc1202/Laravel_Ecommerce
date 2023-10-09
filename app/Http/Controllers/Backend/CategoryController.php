@@ -15,10 +15,10 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::orderBy('id','DESC')->get();
+        $categories = Category::orderBy('id', 'DESC')->get();
         $keyword = $request->keyword;
         if ($keyword) {
-            $categories = Category::where('name','like','%'.$keyword.'%')->paginate();
+            $categories = Category::where('name', 'like', '%' . $keyword . '%')->paginate();
         }
         return view('admin.category.index', compact('categories'));
     }
@@ -30,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-       return view('admin.category.create');
+        return view('admin.category.create');
     }
 
     /**
@@ -43,18 +43,18 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:categories',
-        ],[
+        ], [
             'name.required' => "Category's name cannot be empty",
             'name.unique' => "Category's name already exists. Please try another name!",
         ]);
-        $data = $request->only('name','description','status');
+        $data = $request->only('name', 'description', 'status');
         $file_name = $request->image->getClientOriginalName();
         if ($request->image->move(public_path('/uploads'), $file_name)) {
             $data['image'] = $file_name;
             Category::create($data);
-            return redirect()->route('category.index')->with('true','Category created successfully');
+            return redirect()->route('category.index')->with('true', 'Category created successfully');
         }
-        return redirect()->back()->with('false','Category create failed');
+        return redirect()->back()->with('false', 'Category create failed');
     }
 
     /**
@@ -88,18 +88,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $data = $request->only('name','description','status');
+        $data = $request->only('name', 'description', 'status');
         if ($request->has('image')) {
             $file_name = $request->image->getClientOriginalName();
-            $request->image->move(public_path('/uploads'),$file_name);
+            $request->image->move(public_path('/uploads'), $file_name);
             $data['image'] = $file_name;
         } else {
             $data['image'] = $category['image'];
         }
         if ($category->update($data)) {
-            return redirect()->route('category.index')->with('true','Category updated successfully');
+            return redirect()->route('category.index')->with('true', 'Category updated successfully');
         }
-        return redirect()->back()->with('false','Category update failed');
+        return redirect()->back()->with('false', 'Category update failed');
     }
 
     /**
@@ -111,9 +111,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if ($category->delete()) {
-            return redirect()->route('category.index')->with('true','Category deleted successfully');
+            return redirect()->route('category.index')->with('true', 'Category deleted successfully');
         }
-        return redirect()->back()->with('false','Delete category failed');
-        
+        return redirect()->back()->with('false', 'The category is not empty.');
     }
 }

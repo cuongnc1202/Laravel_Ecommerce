@@ -18,7 +18,7 @@ class CreateProductSizesTable extends Migration
             $table->integer('size_id')->unsigned();
             $table->tinyInteger('status')->default(1);
             $table->primary(['size_id','product_id']);
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('size_id')->references('id')->on('sizes');
             $table->timestamps();
         });

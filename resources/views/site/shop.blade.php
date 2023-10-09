@@ -14,7 +14,7 @@
                         <div class="product__image col-12">
                             <img class="img-fluid" src="{{ url('/uploads') }}/{{$product->feature_image}}" alt="">
                             <div class="quick--view text-center">
-                                <button class="btn btn-quick-view"data-toggle="modal" data-target="#modal-quick-view-{{$product->id}}">Quick view</button>
+                                <button class="btn btn-quick-view" data-toggle="modal" data-target="#modal-quick-view-{{$product->id}}">Quick view</button>
                                 <a href="{{ route('product.detail', $product->id) }}"
                                             class="btn">View detail</a>
                             </div>
@@ -136,7 +136,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 col-sm-12 col-xs-12">
-                                                            <button class="btn btn-success">Add to cart</button>
+                                                            <button class="btn btn-success cart-btn">Add to cart</button>
                                                         </div>
                                                     </div>
                                                 </form>

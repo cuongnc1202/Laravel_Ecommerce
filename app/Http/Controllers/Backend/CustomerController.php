@@ -32,20 +32,6 @@ class CustomerController extends Controller
 
     public function edit(Customer $customer)
     {
-        return view('admin.customer.edit', compact($customer));
+        return view('admin.customer.edit', compact('customer'));
     }
-
-    // public function proflie(Customer $customer)
-    // {
-    //     return view('site.customer-edit', compact('customer'));
-    // }
-
-
-    // public function post_proflie(Request $request, Customer $customer)
-    // {
-    //     $data = $request->only('email','phone','address');
-    //     return redirect()->route('site.index')->with('true', 'Cập nhật thông tin thành công');
-    // }
-
-
 }

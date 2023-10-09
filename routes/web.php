@@ -45,7 +45,6 @@ Route::group(['prefix' => ''], function(){
     Route::post('/contact-us', [HomeController::class, 'post_contact']);
     Route::get('/category/{category}', [HomeController::class, 'category_detail'])->name('category.detail');
     Route::get('/product/{product}', [HomeController::class, 'product_detail'])->name('product.detail');
-    // Route::get('/product-quick-view/{product}', [HomeController::class, 'product_show'])->name('product.view');
 });
 
 Route::group(['prefix' => 'cart'], function() {

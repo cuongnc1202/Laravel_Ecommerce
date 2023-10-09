@@ -204,7 +204,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 col-sm-12 col-xs-12">
-                                                            <button class="btn btn-success">Add to cart</button>
+                                                            <button class="btn btn-success cart-btn">Add to cart</button>
                                                         </div>
                                                     </div>
                                                 </form>

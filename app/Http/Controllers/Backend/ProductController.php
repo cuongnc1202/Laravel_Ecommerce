@@ -69,7 +69,7 @@ class ProductController extends Controller
         ]);
 
         if(Product::addProduct()) {
-            return redirect()->route('product.index')->with('true','Product '.$request->name.' added successful');
+            return redirect()->route('product.index')->with('true','Added product '.$request->name);
         }
         return redirect()->back()->with('false', 'Create product failed');
     }
@@ -146,7 +146,7 @@ class ProductController extends Controller
                 }
             }
            
-            return redirect()->route('product.index')->with('true','Product '.$product->name.' updated successfully');
+            return redirect()->route('product.index')->with('true','Updated product '.$product->name);
         }
         return redirect()->back()->with('false', 'Product update failed');
     }
@@ -157,10 +157,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product, ProductSize $productSize)
     {
         if ($product->delete()) {
-            return redirect()->route('product.index')->with('true','Product has been deleted');
+            return redirect()->route('product.index')->with('true','Deleted product '.$product->name);
         }
         return redirect()->back()->with('false', 'Product delete failed');
     }

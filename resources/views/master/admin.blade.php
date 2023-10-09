@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ url('/assets') }}/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="{{ url('/assets') }}/css/adminlte.css">
-    <link rel="stylesheet" href="{{ url('/assets') }}/plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" href="{{ url('/assets') }}/plugins/toast/dist/jquery.toast.min.css">
     <link rel="stylesheet" href="{{ url('/assets') }}/plugins/summernote/summernote.min.css">
 
     @yield('css')
@@ -49,46 +49,48 @@
     </div>
 
     <script src="{{ url('/assets') }}/plugins/jquery/jquery.min.js"></script>
-    <script src="{{ url('/assets') }}/plugins/toastr/toastr.min.js"></script>
+    <script src="{{ url('/assets') }}/plugins/toast/dist/jquery.toast.min.js"></script>
     <script src="{{ url('/assets') }}/plugins/summernote/summernote.min.js"></script>
     <script src="{{ url('/assets') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="{{ url('/assets') }}/js/adminlte.min.js"></script>
     <script src="{{ url('/assets') }}/plugins/sweetalert2/sweetalert2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @yield('js')
 
-@if (Session::get('true'))
-    <script>
-        Swal.fire({
-        position: 'mid-center',
-        icon: 'success',
-        title: '{{ Session::get("true")}}',
-        showConfirmButton: true,
-        timer: 3500
-        })
-    </script>
-@endif
+    @if (Session::get('true'))
+         <script>
+            // Swal.fire({
+            //       position: 'mid-center',
+            //       icon: 'success',
+            //       title: '{{ Session::get("true") }}',
+            //       showConfirmButton: true,
+            //       timer: 2000
+            // });
+            $.toast({
+               heading: 'Success!',
+               text: '{{ Session::get("true") }}',
+               position: 'top-center',
+               icon: 'success'
+            })
+         </script>
+      @endif
 
-@if (Session::get("false"))
-    <script>
-        Swal.fire({
-        position: 'mid-center',
-        icon: 'error',
-        title: '{{ Session::get("false")}}',
-        showConfirmButton: true,
-        timer: 3500
-        })
-    </script>
-@endif
-    <script>
-        $('.description').summernote({
-            height: 250,
-        });
-
-        $('.short_description').summernote({
-            height: 100,
-        })
-    </script>
-@yield('js')
+      @if (Session::get('false'))
+         <script>
+            // Swal.fire({
+            //       position: 'mid-center',
+            //       icon: 'error',
+            //       title: '{{ Session::get("false") }}',
+            //       showConfirmButton: true,
+            //       timer: 2000
+            // });
+            $.toast({
+               heading: 'Failed!',
+               text: '{{ Session::get("false") }}',
+               position: 'top-center',
+               icon: 'error'
+            })
+         </script>
+      @endif
 </body>
 
 </html>

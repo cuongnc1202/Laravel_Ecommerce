@@ -112,8 +112,8 @@
                                     <div class="col-md-6 col-sm-6 col-xs-12 product--size">
                                         <div class="form-group d-flex">
                                             <label class="mb-0  mr-2" for=""><h6 class="mb-0">Size: </h6></label>
-                                            <select class="form-control" name="cart_size" id="">
-                                                <option>Choose 1</option>
+                                            <select class="form-control" name="cart_size" id="" required>
+                                                <option value="">Choose 1</option>
                                                 @foreach($product->sizes as $size)
                                                 <option value="{{ $size->size->name }}">{{ $size->size->name }}</option>
                                                 @endforeach
